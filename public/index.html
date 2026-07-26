@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Santos Pegasus Soluciones | AI (RAG) Microservices</title>
+    <meta name="description" content="Centro de ingeniería e inteligencia artificial de Santos Pegasus Soluciones, especializado en microservicios y OCI.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- App Header -->
+    <header class="app-header">
+        <div class="brand">
+            <div class="logo-icon">
+                <i class="fa-solid fa-layer-group"></i>
+            </div>
+            <div class="brand-text">
+                <h1>Santos Pegasus <span class="badge-ai">Enterprise AI</span></h1>
+                <p>Microservicios & IA (RAG) sobre Infraestructura OCI</p>
+            </div>
+        </div>
+
+        <div class="header-actions">
+            <span class="badge-status-simple"><i class="fa-solid fa-circle"></i> En línea</span>
+        </div>
+    </header>
+
+    <!-- Main Container Layout -->
+    <main class="app-container">
+
+        <!-- Central Area: Interactive Chat Area -->
+        <section class="chat-section">
+            <div class="chat-header-bar">
+                <div class="chat-title">
+                    <i class="fa-solid fa-satellite-dish"></i>
+                    <h2>Centro de Ingeniería y Operaciones</h2>
+                </div>
+                <div class="active-sources-count">
+                    <i class="fa-solid fa-shield-check"></i>
+                    <span id="activeSourcesCountLabel">0 docs. técnicos activos</span>
+                </div>
+            </div>
+
+            <!-- Messages Stream Area -->
+            <div id="chatMessages" class="chat-messages">
+                <!-- Welcome Card -->
+                <div class="welcome-card">
+                    <div class="welcome-icon">
+                        <i class="fa-solid fa-terminal"></i>
+                    </div>
+                    <h3>¡Hola! Bienvenido al hub de Santos Pegasus Soluciones</h3>
+                    <p>
+                        Soy tu asistente de ingeniería. Estoy aquí para apoyarte en el desarrollo de software escalable, 
+                        arquitectura de microservicios, integración de Inteligencia Artificial (RAG) e infraestructura en OCI.
+                    </p>
+
+                    <div class="quick-prompts-container">
+                        <p class="quick-prompts-title"><i class="fa-solid fa-bolt"></i> Consultas técnicas frecuentes:</p>
+                        <div class="quick-prompts">
+                            <button class="prompt-chip" data-prompt="¿Cuáles son los estándares técnicos para nuestra arquitectura de microservicios?">
+                                Arquitectura de Microservicios
+                            </button>
+                            <button class="prompt-chip" data-prompt="¿Cómo funciona la integración de Inteligencia Artificial (RAG) en nuestras soluciones?">
+                                Soluciones AI (RAG)
+                            </button>
+                            <button class="prompt-chip" data-prompt="¿Qué protocolos de seguridad aplicamos en nuestra infraestructura cloud (OCI)?">
+                                Seguridad en OCI
+                            </button>
+                            <button class="prompt-chip" data-prompt="¿Cuáles son las mejores prácticas para el desarrollo back-end y front-end?">
+                                Ingeniería Full-Stack
+                            </button>
+                            <button class="prompt-chip" data-prompt="¿Cómo garantizamos la excelencia operativa y escalabilidad de nuestros sistemas?">
+                                Excelencia Operativa
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Input Area -->
+            <div class="chat-input-wrapper">
+                <form id="chatForm" class="chat-form">
+                    <textarea 
+                        id="userQuery" 
+                        rows="1" 
+                        placeholder="Escribe tu consulta sobre microservicios, IA, OCI o ingeniería..."
+                        required
+                    ></textarea>
+                    <button type="submit" id="sendBtn" class="btn btn-primary" title="Enviar consulta">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        <span>Enviar</span>
+                    </button>
+                </form>
+                <div class="input-footer">
+                    <small><i class="fa-solid fa-shield-halved"></i> Respuestas respaldadas por la documentación oficial de Santos Pegasus Soluciones</small>
+                </div>
+            </div>
+        </section>
+
+        <!-- Right Column: PDF Sources Management Area -->
+        <aside class="sources-sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-title">
+                    <i class="fa-solid fa-folder-tree"></i>
+                    <h3>Documentación Técnica y Arquitectura</h3>
+                </div>
+                <button id="selectAllSourcesBtn" class="btn-text-sm" title="Marcar/Desmarcar todos">
+                    Seleccionar Todos
+                </button>
+            </div>
+
+            <!-- Drag & Drop Upload Zone -->
+            <div class="upload-zone" id="dropZone">
+                <input type="file" id="pdfFileInput" accept=".pdf" class="file-input-hidden">
+                <div class="upload-content">
+                    <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+                    <p class="upload-title">Adjuntar diagrama o manual técnico</p>
+                    <span class="upload-subtitle">Sube archivos PDF de arquitectura, código o procesos</span>
+                    <button class="btn btn-secondary btn-sm" onclick="document.getElementById('pdfFileInput').click()">
+                        <i class="fa-solid fa-folder-open"></i> Explorar Archivos
+                    </button>
+                </div>
+                <!-- Upload Loader -->
+                <div id="uploadLoader" class="upload-loader hidden">
+                    <i class="fa-solid fa-circle-notch fa-spin"></i>
+                    <span>Procesando documento...</span>
+                </div>
+            </div>
+
+            <!-- Presets & Loaded Documents Section -->
+            <div class="documents-section">
+                <div class="section-label">
+                    <span>DOCUMENTOS TÉCNICOS</span>
+                    <span id="docCountBadge" class="count-badge">0</span>
+                </div>
+
+                <!-- Document List Container -->
+                <div id="documentList" class="document-list">
+                    <!-- Dynamic Document Cards inserted via JS -->
+                    <div class="empty-docs">
+                        <i class="fa-solid fa-spinner fa-spin"></i>
+                        <p>Cargando repositorios de Santos Pegasus...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Storage Info Footer -->
+            <div class="sidebar-footer">
+                <div class="bimbam-info-card">
+                    <h4><i class="fa-solid fa-laptop-code"></i> Santos Pegasus Soluciones</h4>
+                    <p>Desarrollo de software escalable, arquitectura de microservicios y soluciones de IA (RAG) en OCI.</p>
+                </div>
+            </div>
+        </aside>
+
+    </main>
+
+    <!-- Custom JS -->
+    <script src="app.js"></script>
+</body>
+</html>

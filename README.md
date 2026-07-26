@@ -240,6 +240,7 @@ Cada vez que se realiza un nuevo `git push` a la rama `main`, Vercel detecta los
 
 ## Imágenes de ejemplo de la aplicación funcionando
 
-<img width="1600" height="813" alt="Interfaz del agente RAG de Santos Pegasus Soluciones" src="https://github.com/user-attachments/assets/e4551297-8ca5-45fa-8c46-b743706d405a" />
+<img width="1912" height="952" alt="image" src="https://github.com/user-attachments/assets/f00e37d3-bf50-42fd-aa82-968c55134480" />
+<img width="1903" height="861" alt="image" src="https://github.com/user-attachments/assets/eb9457f8-4e74-44e1-9190-cbb3225b77da" />
 
-<img width="1598" height="862" alt="Consulta documental en Santos Pegasus Soluciones" src="https://github.com/user-attachments/assets/a4ee3505-ee29-408e-b304-80614ade7d52" />
+

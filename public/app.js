@@ -1,6 +1,4 @@
-/**
- * BimBam Buy AI PDF Reader - Frontend Controller
- */
+
 
 document.addEventListener('DOMContentLoaded', () => {
     // DOM Element References
@@ -88,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <span>${doc.total_pages} pág.</span> • 
                         <span>${doc.total_chunks} fragmentos</span>
                         <span class="doc-tag ${doc.is_preset ? 'preset' : 'custom'}">
-                            ${doc.is_preset ? 'BimBam Buy' : 'Usuario'}
+                            ${doc.is_preset ? 'Pegasus' : 'Usuario'}
                         </span>
                     </div>
                 </div>
@@ -326,7 +324,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <i class="fa-solid fa-headset"></i>
             </div>
             <div class="message-content">
-                <p><i class="fa-solid fa-circle-notch fa-spin"></i> Consultando las políticas oficiales de BimBam Buy...</p>
+                <p><i class="fa-solid fa-circle-notch fa-spin"></i> Consultando las políticas oficiales de Santos Pegasus...</p>
             </div>
         `;
         chatMessages.appendChild(row);
